@@ -114,9 +114,8 @@ func getData(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 func connectToDatabase() (db *sql.DB) {
 	url := os.Getenv("POSTGRES_URL")
 	// FIXME: Why doesn't it take the argument out of the environment?
-	//   db, err := sql.Open("postgres", url)
-	db, err := sql.Open("postgres", "postgres://postgres:postgres@postgres.internal:5432/postgres?sslmode=disable")
-	//db, err := sql.Open("postgres", "host=172.19.0.2")
+	db, err := sql.Open("postgres", url)
+	//db, err := sql.Open("postgres", "postgres://postgres:postgres@postgres.internal:5432/postgres?sslmode=disable")
 	log.Print(url)
 	if err != nil {
 		log.Fatal("Connect:", err)
